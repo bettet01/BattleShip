@@ -37,5 +37,4 @@ public class Ship {
     public void setPosition(ArrayList<ArrayList<Integer>> position) {
         this.position = position;
     }
-   
 }
