@@ -1,5 +1,7 @@
 package com.adonahue.battleship.dto;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author allison
@@ -8,7 +10,9 @@ public class Ship {
     
     private String name;
     private int length;
-    private int[][] position;
+    private ArrayList<ArrayList<Integer>> position;
+    
+    
 
     public String getName() {
         return name;
@@ -26,13 +30,12 @@ public class Ship {
         this.length = length;
     }
 
-    public int[][] getPosition() {
+    public ArrayList<ArrayList<Integer>> getPosition() {
         return position;
     }
 
-    public void setPosition(int[][] position) {
+    public void setPosition(ArrayList<ArrayList<Integer>> position) {
         this.position = position;
     }
-    
-    
+   
 }
