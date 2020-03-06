@@ -29,8 +29,13 @@ public class Board {
 		return board;
 	}
 
-	public void setBoardSquare(int x, int y){
-		//TODO: add code that puts a X O or _;
+	public void setBoardSquare(int[] coordinates){
+		int x = coordinates[0];
+		int y = coordinates[1];
+
+
+		//TODO: need to check a ship is in that location. print X if true O if false
+		
 	}
 
 
