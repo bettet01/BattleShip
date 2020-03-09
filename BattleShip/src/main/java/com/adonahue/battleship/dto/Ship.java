@@ -57,7 +57,7 @@ public class Ship {
     // input
     public void setNewPosition(ArrayList<Integer> location, String orientation) throws BadPlacementException {
         switch (orientation) {
-            case "h":
+            case "v":
                 if (location.get(1) + this.length >= 9) {
                     throw new BadPlacementException("That ship falls off the board");
                 }
@@ -71,7 +71,7 @@ public class Ship {
                 }
                 break;
 
-            case "v":
+            case "h":
                 if (location.get(0) + this.length >= 9) {
                     throw new BadPlacementException("That ship falls off the board");
                 }
