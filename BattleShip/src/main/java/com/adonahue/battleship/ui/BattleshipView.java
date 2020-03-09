@@ -80,11 +80,11 @@ public class BattleshipView {
     }
 
     public int[] makeShot(String choice) {
-        int letter = choice.charAt(0) - 'A';
+        int column = choice.charAt(0) - 'A';
         try {
-            int number = Integer.parseInt(choice.substring(1)) - 1;
-            if ((letter >= 0 && letter < 10) && (number >= 0 && number < 10)) {
-                return new int[]{number, letter};
+            int row = Integer.parseInt(choice.substring(1)) - 1;
+            if ((column >= 0 && column < 10) && (row >= 0 && row < 10)) {
+                return new int[]{row, column};
             } else {
                 io.print("Invalid coordinates.");
             }

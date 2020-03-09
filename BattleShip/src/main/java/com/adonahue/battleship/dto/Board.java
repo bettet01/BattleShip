@@ -82,9 +82,9 @@ public class Board {
 	}
 
 	public boolean checkBoard(int[] location) {
-		int letter = location[0];
-		int number = location[1];
-		if (board[letter][number].equals("X") || board[letter][number].equals("O")) {
+		int row = location[0];
+		int column = location[1];
+		if (board[row][column].equals("X") || board[row][column].equals("O")) {
 			return true;
 		} else {
 			return false;
@@ -92,19 +92,19 @@ public class Board {
 	}
 
 	public boolean checkHit(int[] location) {
-		int letter = location[0];
-		int number = location[1];
+		int row = location[0];
+		int column = location[1];
 		for (Ship ship : aliveShips) {
 			HashMap<Integer, ArrayList<Integer>> positions = ship.getPosition();
 			for (ArrayList<Integer> shipPositions : positions.values()) {
-				if (shipPositions.get(0) == letter && shipPositions.get(1) == number) {
-					board[letter][number] = "X";
+				if (shipPositions.get(0) == row && shipPositions.get(1) == column) {
+					board[row][column] = "X";
 					checkDeadShip(ship);
 					return true;
 				}
 			}
 		}
-		board[letter][number] = "O";
+		board[row][column] = "O";
 		return false;
 	}
 
