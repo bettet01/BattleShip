@@ -25,11 +25,11 @@ public class BattleShipController {
             String p1Name = view.getName();
             view.printTurn(); //Print the current player's turn
             for (Ship s : p1Board.getShips()) {
-                p1Board.addShip(view.placeShip(p1Board.getShips()));
+                p1Board.setShipPosition(view.placeShip(s), s.getName());
             }
             view.printTurn();
             for (Ship s : p2Board.getShips()) {
-                p2Board.addShip(view.placeShip(p1Board.getShips()));
+                p2Board.setShipPosition(view.placeShip(s), s.getName());
             }
 
         }
