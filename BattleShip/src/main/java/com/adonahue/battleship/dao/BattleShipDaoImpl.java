@@ -3,12 +3,17 @@ package com.adonahue.battleship.dao;
 import com.adonahue.battleship.dto.Ship;
 import com.adonahue.battleship.ui.UserIO;
 import com.adonahue.battleship.ui.UserIOImp;
+import com.adonahue.battleship.dto.Board;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -19,6 +24,7 @@ public class BattleShipDaoImpl implements BattleShipDao {
     private static final String BOARD_FILE = "battleshipBoard.txt";
     private static final String SHIP_FILE = "battleshipShip.txt";
     private UserIO io = new UserIOImp();
+    private Board board = new Board();
 
     @Override
     public void saveBoard(String[][] board) throws BattleShipDaoException {
@@ -54,8 +60,28 @@ public class BattleShipDaoImpl implements BattleShipDao {
     }
 
     @Override
-    public void loadGame() {
+    public void loadBoard() {
 
+    }
+    
+    @Override
+    public void loadShip() throws BattleShipDaoException{
+        Scanner scanner;
+        String currentLine;
+        Ship currentShip;
+        try {
+            scanner = new Scanner(new BufferedReader(
+                    new FileReader(SHIP_FILE)));
+        } catch (FileNotFoundException e) {
+            throw new BattleShipDaoException(
+                    "-_- Could not load data into memory.", e);
+        }
+        while (scanner.hasNextLine()) {
+            currentLine = scanner.nextLine();
+            currentShip = unmarshallShip(currentLine);
+            board.setShip(currentShip);
+        }
+        scanner.close();
     }
 
     @Override
