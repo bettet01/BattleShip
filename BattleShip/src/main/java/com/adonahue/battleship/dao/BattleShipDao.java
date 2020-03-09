@@ -5,6 +5,8 @@
  */
 package com.adonahue.battleship.dao;
 
+import com.adonahue.battleship.dto.Board;
+
 /**
  *
  * @author allison
@@ -14,4 +16,7 @@ public interface BattleShipDao {
     void saveGame() throws BattleShipDaoException;
     
     void loadGame();
+    
+    String marshallBoard(String[][] board);
+    String[][] unmarshallBoard(String boardAsText);
 }
