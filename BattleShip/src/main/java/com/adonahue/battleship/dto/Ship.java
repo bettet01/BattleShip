@@ -13,14 +13,6 @@ public class Ship {
     private int length;
     private HashMap<Integer, ArrayList<Integer>> position;
 
-    public static void main(String args[]) {
-        Ship ship = new Ship("battleship", 4);
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(0);
-        list.add(1);
-        ship.setPosition(list, "h");
-    }
-
     public Ship(String name, int length) {
         this.name = name;
         this.length = length;
@@ -46,28 +38,7 @@ public class Ship {
         return position;
     }
 
-    public void setPosition(ArrayList<Integer> position, String orientation) {
-        for (int i = 0; i < this.length; i++) {
-
-        }
-
-        switch (orientation) {
-            case "h":
-                for (int i = 0; i < this.length; i++) {
-                    position.set(0, position.get(0) + i);
-                    this.position.put(i, position);
-                }
-                break;
-
-            case "y":
-                for (int i = 0; i < this.length; i++) {
-                    position.set(0, position.get(1) + i);
-                    this.position.put(i, position);
-                }
-                break;
-
-            default:
-                break;
-        }
+    public void setPosition(HashMap<Integer, ArrayList<Integer>> positionMap) {
+        this.position = positionMap;       
     }
 }
