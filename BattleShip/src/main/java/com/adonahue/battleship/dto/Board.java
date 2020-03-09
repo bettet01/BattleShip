@@ -2,7 +2,11 @@ package com.adonahue.battleship.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.stream.Collectors;
+=======
+
+>>>>>>> 37d7d0f29059f7ba0d978fe8b0eae09824bdddb2
 
 /**
  * Board
@@ -50,12 +54,12 @@ public class Board {
 		return board;
 	}
 
-	public void setBoardSquare(int[] coordinates){
+	public String setBoardSquare(int[] coordinates){
 		int x = coordinates[0];
 		int y = coordinates[1];
 
-
-		//TODO: need to check a ship is in that location. print X if true O if false
+		for()
+		
 		
 	}
 
