@@ -43,7 +43,7 @@ public class Board {
 	//Recieves [A4, H] (Space A4, position horizonally)
 	public void setShipPosition(String[] pos, String name) throws BadPlacementException {
 		List<Ship> singleShip = aliveShips.stream().filter(s -> s.getName().equals(name)).collect(Collectors.toList());
-		singleShip.get(0).setPosition(convertLocation(pos), pos[1]);
+		singleShip.get(0).setNewPosition(convertLocation(pos), pos[1]);
 
 		for (Ship s: aliveShips) {
 			for (int x : singleShip.get(0).getPosition().keySet()){
