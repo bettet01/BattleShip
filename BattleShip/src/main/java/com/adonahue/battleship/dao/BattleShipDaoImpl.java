@@ -1,20 +1,23 @@
 package com.adonahue.battleship.dao;
 
+import com.adonahue.battleship.dto.Board;
+import com.adonahue.battleship.ui.UserIO;
+import com.adonahue.battleship.ui.UserIOImp;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 /**
  *
  * @author allison
  */
-public class BattleShipDaoImpl implements BattleShipDao{
-    
+public class BattleShipDaoImpl implements BattleShipDao {
+
     private static final String GAME_FILE = "battleship.txt";
+    private UserIO io = new UserIOImp();
 
     @Override
-    public void saveGame() throws BattleShipDaoException{
+    public void saveGame(String[][] board) throws BattleShipDaoException {
         PrintWriter out;
         try {
             out = new PrintWriter(new FileWriter(GAME_FILE));
@@ -22,19 +25,42 @@ public class BattleShipDaoImpl implements BattleShipDao{
             throw new BattleShipDaoException(
                     "Could not save DVD data.", e);
         }
-        String dvdAsText;
-        List<Dvd> dvdList = this.getAllDvds();
-        for (Dvd currentDvd : dvdList) {
-            dvdAsText = marshallDvd(currentDvd);
-            out.println(dvdAsText);
-            out.flush();
-        }
+        String boardAsText;
+
+        boardAsText = marshallBoard(board);
+        out.println(boardAsText);
+        out.flush();
         out.close();
     }
 
     @Override
     public void loadGame() {
-        
+
     }
-    
+
+    @Override
+    public String marshallBoard(String[][] board) {
+        String boardString = "";
+        for (int i = 0; i < 10; i++) {
+            boardString += "\\";
+            for (int j = 0; j < 10; j++) {
+                boardString += board[i][j] + "::";
+            }
+        }
+        return boardString;
+    }
+
+    @Override
+    public String[][] unmarshallBoard(String boardAsText) {
+        String[][] board = new String[10][10];
+        String[] firstSplit = boardAsText.split("\\");
+        for (int i = 0; i < 10; i++) {
+            String[] secondSplit = firstSplit[i].split("::");
+            for (int j = 0; j < 10; j++) {
+                secondSplit[j] = board[i][j];
+            }
+        }
+        return board;
+    }
+
 }
