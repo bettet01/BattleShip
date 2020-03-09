@@ -15,7 +15,6 @@ public class Ship {
     private int length;
     private HashMap<Integer, ArrayList<Integer>> position = new HashMap<>();
 
-<<<<<<< HEAD
     // TESTING
     // public static void main(String args[]) {
     //     Ship ship = new Ship("battleship", 4);
@@ -25,8 +24,6 @@ public class Ship {
     //     ship.setPosition(list, "h");
     // }
 
-=======
->>>>>>> 6e197828cfff475b766d0249bb19f54d2141148d
     public Ship(String name, int length) {
         this.name = name;
         this.length = length;
@@ -52,7 +49,6 @@ public class Ship {
         return position;
     }
 
-<<<<<<< HEAD
     //takes in ArrayList with xy coord and orientation, sets position based off input
     public void setPosition(ArrayList<Integer> position, String orientation) throws BadPlacementException{
         switch (orientation) {
@@ -81,9 +77,5 @@ public class Ship {
             default:
                 break;
         }
-=======
-    public void setPosition(HashMap<Integer, ArrayList<Integer>> positionMap) {
-        this.position = positionMap;       
->>>>>>> 6e197828cfff475b766d0249bb19f54d2141148d
     }
 }

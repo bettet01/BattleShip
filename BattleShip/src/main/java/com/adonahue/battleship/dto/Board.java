@@ -14,12 +14,6 @@ public class Board {
 	private String[][] board = new String[10][10];
 
 	public Board() {
-		aliveShips.add(new Ship("patrol", 2));
-		aliveShips.add(new Ship("destroyer", 3));
-		aliveShips.add(new Ship("submarine", 3));
-		aliveShips.add(new Ship("aircraft carrier", 5));
-		aliveShips.add(new Ship("battleship", 4));
-		initBoard();
 	}
 
 	public Board(Ship patrol, Ship destroyer, Ship submarine, Ship aircraftCarrier, Ship battleship){
@@ -28,6 +22,15 @@ public class Board {
 		aliveShips.add(submarine);
 		aliveShips.add(aircraftCarrier);
 		aliveShips.add(battleship);
+		initBoard();
+	}
+
+	public void newBoard() {
+		aliveShips.add(new Ship("patrol", 2));
+		aliveShips.add(new Ship("destroyer", 3));
+		aliveShips.add(new Ship("submarine", 3));
+		aliveShips.add(new Ship("aircraft carrier", 5));
+		aliveShips.add(new Ship("battleship", 4));
 		initBoard();
 	}
 

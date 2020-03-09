@@ -1,6 +1,7 @@
 package com.adonahue.battleship.controller;
 
 import com.adonahue.battleship.dao.BattleShipDao;
+import com.adonahue.battleship.dto.Board;
 import com.adonahue.battleship.dto.Ship;
 import com.adonahue.battleship.ui.BattleshipView;
 
@@ -67,8 +68,8 @@ public class BattleShipController {
             view.displayBeginBanner();
             view.getNames();
             view.printTurn(p1Turn); //Print the current player's turn
-            dao.buildNewBoard();
-            for (Ship s : dao.getP1Board.getShips()) {
+            dao.newBoard();
+            for (Ship s : dao.getP1Ships()) {
                 dao.setShipPosition(view.placeShip(s), s.getName(), p1Turn);
             }
             p1Turn = !p1Turn;
