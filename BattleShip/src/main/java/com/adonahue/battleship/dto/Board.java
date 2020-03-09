@@ -42,18 +42,20 @@ public class Board {
 
 	//Recieves [A4, H] (Space A4, position horizonally)
 	public void setShipPosition(String[] pos, String name) throws BadPlacementException {
-		List<Ship> singleShip = aliveShips.stream().filter(s -> s.getName().equals(name)).collect(Collectors.toList());
-		singleShip.get(0).setNewPosition(convertLocation(pos), pos[1]);
+		List<Ship> tempShip = aliveShips.stream().filter(s -> s.getName().equals(name)).collect(Collectors.toList());
+		Ship singleShip = tempShip.get(0);
+		singleShip.setNewPosition(convertLocation(pos), pos[1]);
 
-		for (Ship s: aliveShips) {
-			for (int x : singleShip.get(0).getPosition().keySet()){
-				if (s.getPosition().containsValue(singleShip.get(0).getPosition().get(x))){
+		List<Ship> otherShips = aliveShips.stream().filter(s -> !s.equals(singleShip)).collect(Collectors.toList());
+			
+		
+		for (Ship s: otherShips) {
+			for (int x : singleShip.getPosition().keySet()){
+				if (s.getPosition().containsValue(singleShip.getPosition().get(x))){
 					throw new BadPlacementException("That ship overlaps another");
 				}
 			}
-		}
-
-		
+		}		
 	}
 
 	//requires a String[] with x and y position (A4), returns xy coords (0,4)

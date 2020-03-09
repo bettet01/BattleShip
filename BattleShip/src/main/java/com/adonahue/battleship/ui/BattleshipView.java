@@ -106,4 +106,8 @@ public class BattleshipView {
     
 	public void getNames() {
 	}
+
+	public void printError(String message) {
+        io.print(message);
+	}
 }
