@@ -177,6 +177,22 @@ public class BattleShipDaoImpl implements BattleShipDao {
         }
         scanner.close();
     }
+    
+    @Override
+    public void loadGame() throws BattleShipDaoException{
+        loadBoard1();
+        loadBoard2();
+        loadShip1();
+        loadShip2();
+    }
+    
+    @Override
+    public void saveGame(List<Ship> p1ShipList, List<Ship> p2ShipList, String[][] board1, String[][] board2) throws BattleShipDaoException{
+        saveBoard1(board1);
+        saveBoard2(board2);
+        saveShip1(p1ShipList);
+        saveShip2(p2ShipList);
+    }
 
     @Override
     public String marshallBoard(String[][] board) {
