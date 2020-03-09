@@ -100,7 +100,7 @@ public class Board {
 			HashMap<Integer, ArrayList<Integer>> positions = ship.getPosition();
 			for (ArrayList<Integer> shipPositions : positions.values()) {
 				if (shipPositions.get(0) == row && shipPositions.get(1) == column) {
-					board[row][column] = Character.toString(ship.getName().charAt(0));
+					board[row][column] = "X";
 					checkDeadShip(ship);
 					return true;
 				}
