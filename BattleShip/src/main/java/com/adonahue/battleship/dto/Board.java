@@ -3,7 +3,6 @@ package com.adonahue.battleship.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.adonahue.battleship.ui.*;
 
 /**
  * Board
@@ -34,7 +33,7 @@ public class Board {
 		ArrayList<Integer> xy = new ArrayList<>();
 		xy.add(pos[0].charAt(0) - 'A');
 		xy.add(pos[0].charAt(1) - '1');
-		aliveShips.stream().filter(s -> s.g)
+		aliveShips.stream().filter(s -> s.g);
 
 	}
 	// for testing purposes
@@ -51,12 +50,12 @@ public class Board {
 		return board;
 	}
 
-	public void setBoardSquare(int[] coordinates){
+	public String setBoardSquare(int[] coordinates){
 		int x = coordinates[0];
 		int y = coordinates[1];
 
-
-		//TODO: need to check a ship is in that location. print X if true O if false
+		for()
+		
 		
 	}
 
