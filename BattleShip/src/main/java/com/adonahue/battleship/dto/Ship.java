@@ -49,30 +49,42 @@ public class Ship {
         return position;
     }
 
+    public void setPosition(HashMap<Integer, ArrayList<Integer>> position) {
+        this.position = position;
+    }
+    
+    
+
     //takes in ArrayList with xy coord and orientation, sets position based off input
-    public void setNewPosition(ArrayList<Integer> position, String orientation) throws BadPlacementException{
+    public void setNewPosition(ArrayList<Integer> location, String orientation) throws BadPlacementException{
         switch (orientation) {
             case "h":
-                this.position.put(0, position);
+                if (location.get(0) + this.length > 9) {
+                    throw new BadPlacementException("That ship falls off the board");
+            }
+                this.position.put(0, location);
                 for (int i = 1; i < this.length; i++) {
-                    position.set(0, position.get(0) + 1);
-                    if (position.get(0) > 9) {
-                        throw new BadPlacementException("That ship falls off the board");
-                    }
-                    this.position.put(i, position);
+                    ArrayList<Integer> newLocation  = new ArrayList<>();
+                    newLocation.add(location.get(0));
+                    newLocation.add(location.get(0)+i);
+                   
+                    this.position.put(i, newLocation);
                 }
                 break;
 
-            case "v":
-            this.position.put(0, position);
-            for (int i = 1; i < this.length; i++) {
-                position.set(0, position.get(1) + 1);
-                if (position.get(1) > 9) {
+                case "v":
+                if (location.get(1) + this.length > 9) {
                     throw new BadPlacementException("That ship falls off the board");
-                }
-                this.position.put(i, position);
             }
-            break;
+                this.position.put(0, location);
+                for (int i = 1; i < this.length; i++) {
+                    ArrayList<Integer> newLocation  = new ArrayList<>();
+                    newLocation.add(location.get(0)+i);
+                    newLocation.add(location.get(0));
+                   
+                    this.position.put(i, newLocation);
+                }
+                break;
 
             default:
                 break;
