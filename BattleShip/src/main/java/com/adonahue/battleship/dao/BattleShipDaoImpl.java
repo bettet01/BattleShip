@@ -146,6 +146,7 @@ public class BattleShipDaoImpl implements BattleShipDao {
             currentLine = scanner.nextLine();
             currentShip = unmarshallShip(currentLine);
             board1.setShip(currentShip);
+            
         }
         scanner.close();
     }
