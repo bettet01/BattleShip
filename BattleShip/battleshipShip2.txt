@@ -1,0 +1,5 @@
+patrol::2::0:[0, 0]/1:[0, 1]/
+destroyer::3::0:[1, 0]/1:[1, 2]/2:[1, 3]/
+submarine::3::
+aircraft carrier::5::
+battleship::4::
