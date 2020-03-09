@@ -149,5 +149,9 @@ public class BattleshipView {
 
 	public void displaySunk(String check) {
         io.print("You Sunk My " + check + "!");
-	}
+    }
+    
+    public void hitEnter(){
+        io.readString("Click enter to continue");
+    }
 }

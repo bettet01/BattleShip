@@ -67,7 +67,7 @@ public class BattleShipController {
                     if (board.checkBoard(array)) {
                         view.displayAlreadyChosen();
                     } else {
-                        String check = board.checkHit(array)
+                        String check = board.checkHit(array);
                             if(check.equals("X")){
                                 view.displayHit();
                                 keepChoosing = false;
@@ -79,6 +79,7 @@ public class BattleShipController {
                         }
                     }
                 }
+                view.hitEnter();
             }
         }
     }
