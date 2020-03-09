@@ -31,8 +31,8 @@ public class Board {
 		aliveShips.add(new Ship("patrol", 2));
 		aliveShips.add(new Ship("destroyer", 3));
 		aliveShips.add(new Ship("submarine", 3));
-		aliveShips.add(new Ship("aircraft carrier", 5));
-		aliveShips.add(new Ship("battleship", 4));
+		aliveShips.add(new Ship("aircraft carrier", 4));
+		aliveShips.add(new Ship("battleship", 5));
 		initBoard();
 	}
 
