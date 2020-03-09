@@ -3,7 +3,6 @@ package com.adonahue.battleship.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.adonahue.battleship.ui.*;
 
 /**
  * Board
