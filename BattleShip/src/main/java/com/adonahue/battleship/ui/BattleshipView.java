@@ -28,7 +28,6 @@ public class BattleshipView {
         return null;
     }
 
-
 	public void displayBeginBanner() {
 	}
 
@@ -38,7 +37,6 @@ public class BattleshipView {
 
 	public void printTurn() {
 	}
-
 
     public void displayBoard(Board board){
             // TODO: add the column letters with correct spacing
