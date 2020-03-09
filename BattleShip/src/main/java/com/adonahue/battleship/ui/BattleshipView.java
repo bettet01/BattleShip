@@ -1,5 +1,7 @@
 package com.adonahue.battleship.ui;
 
+import com.adonahue.battleship.dto.Board;
+
 /**
  * BattleshipView
  */
@@ -26,6 +28,7 @@ public class BattleshipView {
         return null;
     }
 
+<<<<<<< HEAD
 	public void displayBeginBanner() {
 	}
 
@@ -35,4 +38,9 @@ public class BattleshipView {
 
 	public void printTurn() {
 	}
+=======
+
+    public void displayBoard(Board board){
+    }
+>>>>>>> 1d81b05341cc5528095332298f995dee00156a58
 }
