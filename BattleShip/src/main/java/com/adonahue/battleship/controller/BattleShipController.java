@@ -2,6 +2,7 @@ package com.adonahue.battleship.controller;
 
 import com.adonahue.battleship.dao.BadPlacementException;
 import com.adonahue.battleship.dao.BattleShipDao;
+import com.adonahue.battleship.dao.BattleShipDaoException;
 import com.adonahue.battleship.dto.Board;
 import com.adonahue.battleship.dto.Ship;
 import com.adonahue.battleship.ui.BattleshipView;
@@ -20,7 +21,7 @@ public class BattleShipController {
         this.dao = dao;
     }
 
-    public void execute() {
+    public void execute() throws BattleShipDaoException {
         boolean gameOn = true;
         p1Turn = true;
         boolean newGame = true;
@@ -28,10 +29,11 @@ public class BattleShipController {
         if (newGame) {
             setUp();
         } else {
-            // loadGame();
+            dao.loadGame();
         }
 
         view.displayBeginBanner();
+        view.saveGameInstructions();
         while (gameOn) {
             Board currentBoard = getPlayersBoard(p1Turn);
             makeShot(currentBoard);
@@ -48,19 +50,25 @@ public class BattleShipController {
         return board;
     }
 
-    private void makeShot(Board board) {
+    private void makeShot(Board board) throws BattleShipDaoException {
         boolean keepChoosing = true;
         while (keepChoosing) {
-            int[] array = view.makeShot();
-            if (board.checkBoard(array)) {
-                view.displayAlreadyChosen();
-            } else {
-                if (board.checkHit(array)) {
-                    view.displayHit();
-                    keepChoosing = false;
+            String choice = view.getShotChoice();
+            if (choice.equalsIgnoreCase("save")) {
+                dao.saveGame();
+            }
+            int[] array = view.makeShot(choice);
+            if (array != null) {
+                if (board.checkBoard(array)) {
+                    view.displayAlreadyChosen();
                 } else {
-                    view.displayMiss();
-                    keepChoosing = false;
+                    if (board.checkHit(array)) {
+                        view.displayHit();
+                        keepChoosing = false;
+                    } else {
+                        view.displayMiss();
+                        keepChoosing = false;
+                    }
                 }
             }
         }
@@ -78,7 +86,7 @@ public class BattleShipController {
             dao.newBoard();
             boolean placed = false;
             for (Ship s : dao.getP1Ships()) {
-                while (!placed){
+                while (!placed) {
                     try {
                         dao.setShipPosition(view.placeShip(s), s.getName(), p1Turn);
                         placed = true;

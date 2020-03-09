@@ -1,7 +1,5 @@
 package com.adonahue.battleship.ui;
 
-import java.util.List;
-
 import com.adonahue.battleship.dto.Board;
 import com.adonahue.battleship.dto.Ship;
 
@@ -40,9 +38,9 @@ public class BattleshipView {
     }
 
     public void printTurn(boolean p1Turn) {
-        if(p1Turn){
+        if (p1Turn) {
             io.print("It's player 1's turn.");
-        } else{
+        } else {
             io.print("It's player 2's turn.");
         }
     }
@@ -50,9 +48,9 @@ public class BattleshipView {
     public void displayBoard(Board board) {
         io.print("   A B C D E F G H I J");
         for (int i = 0; i < board.getBoard().length; i++) {
-            if(i != 0){
+            if (i != 0) {
                 System.out.println("");
-            } 
+            }
             // should print out row numbers
             if (i + 1 < 10) {
                 System.out.print(i + 1 + ". ");
@@ -73,41 +71,49 @@ public class BattleshipView {
         return position;
     }
 
-    public int[] makeShot() {
+    public String getShotChoice() {
         while (true) {
             io.print("");
             String choice = io.readString("Enter Shot Position (A1): ");
-            int letter = choice.charAt(0) - 'A';
-            try {
-                int number = Integer.parseInt(choice.substring(1))-1;
-                if((letter >= 0 && letter < 10) && (number >= 0 && number < 10)){
-                    return new int[] {letter, number};
-                } else{
-                    io.print("Invalid coordinates.");
-                }
-            } catch (Exception e) {
-                io.print("Invalid coordinates.");
-            }
-
+            return choice;
         }
     }
 
-	public void displayAlreadyChosen() {
+    public int[] makeShot(String choice) {
+        int letter = choice.charAt(0) - 'A';
+        try {
+            int number = Integer.parseInt(choice.substring(1)) - 1;
+            if ((letter >= 0 && letter < 10) && (number >= 0 && number < 10)) {
+                return new int[]{letter, number};
+            } else {
+                io.print("Invalid coordinates.");
+            }
+        } catch (Exception e) {
+            io.print("Invalid coordinates.");
+        }
+        return null;
+    }
+
+    public void displayAlreadyChosen() {
         io.print("That location has already been tried.");
-	}
+    }
 
-	public void displayHit() {
+    public void displayHit() {
         io.print("Hit! Let's go!");
-	}
+    }
 
-	public void displayMiss() {
+    public void displayMiss() {
         io.print("Miss :(");
     }
-    
-	public void getNames() {
-	}
 
-	public void printError(String message) {
-        io.print(message);
-	}
+    public void getNames() {
+    }
+
+    public void printError(String s) {
+        io.print(s);
+    }
+
+    public void saveGameInstructions() {
+        io.print("Type 'save' at any time if you would like to save");
+    }
 }
