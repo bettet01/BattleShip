@@ -43,11 +43,6 @@ public class Board {
 		aliveShips.add(ship);
 	}
 
-
-	public void showBoard(){
-
-	}
-
 	public List<Ship> getShips(){
 		return aliveShips;
 	}
