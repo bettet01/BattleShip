@@ -2,11 +2,7 @@ package com.adonahue.battleship.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
 import java.util.stream.Collectors;
-=======
-
->>>>>>> 37d7d0f29059f7ba0d978fe8b0eae09824bdddb2
 
 /**
  * Board
