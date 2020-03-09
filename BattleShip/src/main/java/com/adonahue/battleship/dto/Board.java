@@ -100,7 +100,7 @@ public class Board {
 		}
 	}
 
-	public boolean checkHit(int[] location) {
+	public String checkHit(int[] location) {
 		int row = location[0];
 		int column = location[1];
 		for (Ship ship : aliveShips) {
@@ -108,16 +108,19 @@ public class Board {
 			for (ArrayList<Integer> shipPositions : positions.values()) {
 				if (shipPositions.get(0) == row && shipPositions.get(1) == column) {
 					board[row][column] = "X";
-					checkDeadShip(ship);
-					return true;
+					if(checkDeadShip(ship)){
+						return ship.getName();
+					} else{
+						return "X";
+					}
 				}
 			}
 		}
 		board[row][column] = "O";
-		return false;
+		return "O";
 	}
 
-	private void checkDeadShip(Ship ship) {
+	private boolean checkDeadShip(Ship ship) {
 		int count = 0;
 		Set<Integer> keys = ship.getPosition().keySet();
 		for (Integer key : keys) {
@@ -128,6 +131,9 @@ public class Board {
 		}
 		if (count == ship.getPosition().size()) {
 			aliveShips.remove(ship);
+			return true;
+		} else {
+			return false;
 		}
 	}
 
