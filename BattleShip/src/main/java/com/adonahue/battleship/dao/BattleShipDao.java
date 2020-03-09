@@ -15,10 +15,13 @@ import java.util.List;
  */
 public interface BattleShipDao {
     
-    void saveBoard(String[][] board) throws BattleShipDaoException;
-    void saveShip(List<Ship> shipList) throws BattleShipDaoException;
+    void saveBoard1(String[][] board) throws BattleShipDaoException;
+    void saveBoard2(String[][] board) throws BattleShipDaoException;
+    void saveShip1(List<Ship> shipList) throws BattleShipDaoException;
+    void saveShip2(List<Ship> shipList) throws BattleShipDaoException;
     
-    void loadGame();
+    void loadBoard1() throws BattleShipDaoException;
+    void loadShip() throws BattleShipDaoException;
     
     String marshallBoard(String[][] board);
     String marshallShip(Ship ship);
