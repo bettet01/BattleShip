@@ -76,6 +76,7 @@ public class BattleShipController {
                                 keepChoosing = false;
                             } else {
                                 view.displaySunk(check);
+                                keepChoosing = false;
                         }
                     }
                 }
