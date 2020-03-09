@@ -12,6 +12,16 @@ public class Board {
 	private List<Ship> aliveShips = new ArrayList<>();
 	private String[][] board = new String[10][10];
 
+
+	public Board(Ship pt, Ship destroyer, Ship submarine, Ship aircraftCarrier, Ship battleship){
+		aliveShips.add(pt);
+		aliveShips.add(destroyer);
+		aliveShips.add(submarine);
+		aliveShips.add(aircraftCarrier);
+		aliveShips.add(battleship);
+		initBoard();
+	}
+
 	// for testing purposes
 
 	public void setShip(Ship ship){
