@@ -16,6 +16,7 @@ public class BattleShipController {
     }
 
     public void execute() {
+        boolean gameOn = true;
         Board p1Board = new Board();
         Board p2Board = new Board();
         boolean p1Turn = true;
@@ -32,6 +33,14 @@ public class BattleShipController {
                 p2Board.setShipPosition(view.placeShip(s), s.getName());
             }
 
+
+        while(gameOn){
+            view.displayBeginBanner();
+            view.displayBoard(p1Board);
+            gameOn = false;
         }
+
+
+
     }
 }

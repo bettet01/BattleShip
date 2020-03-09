@@ -1,11 +1,12 @@
 package com.adonahue.battleship.dao;
 
-import com.adonahue.battleship.dto.Board;
+import com.adonahue.battleship.dto.Ship;
 import com.adonahue.battleship.ui.UserIO;
 import com.adonahue.battleship.ui.UserIOImp;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 /**
  *
@@ -51,6 +52,14 @@ public class BattleShipDaoImpl implements BattleShipDao {
     }
 
     @Override
+    public String marshallShip(Ship ship) {
+        String shipAsText = ship.getName() + "::";
+        shipAsText += ship.getLength() + "::";
+        shipAsText += ship.getPosition();
+        return shipAsText;
+    }
+
+    @Override
     public String[][] unmarshallBoard(String boardAsText) {
         String[][] board = new String[10][10];
         String[] firstSplit = boardAsText.split("\\");
@@ -61,6 +70,11 @@ public class BattleShipDaoImpl implements BattleShipDao {
             }
         }
         return board;
+    }
+
+    @Override
+    public Ship unmarshallShip(String shipAsText) {
+       
     }
 
 }
