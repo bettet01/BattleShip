@@ -5,11 +5,6 @@
  */
 package com.adonahue.battleship.dao;
 
-<<<<<<< HEAD
-
-=======
-import com.adonahue.battleship.dto.Ship;
->>>>>>> beab90a5b202736bf50c3a0675e471175421d37e
 import java.util.List;
 
 import com.adonahue.battleship.dto.Board;

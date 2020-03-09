@@ -42,7 +42,19 @@ public class BattleShipController {
     }
 
     private void makeShot(Board board) {
-        int[] array = view.makeShot();
+        while(true){
+            int[] array = view.makeShot();
+            if(board.checkBoard(array)){
+               view.displayAlreadyChosen();
+            } else {
+                if(board.checkHit(array)){
+                    view.displayHit();
+                } else {
+                    view.displayMiss();
+                }
+            }
+        }
+
         // TODO: check if already shot or if it's a hit or miss
 
     }
