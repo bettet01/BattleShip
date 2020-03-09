@@ -21,6 +21,7 @@ public class Board {
 		aliveShips.add(new Ship("battleship", 4));
 		initBoard();
 	}
+
 	public Board(Ship patrol, Ship destroyer, Ship submarine, Ship aircraftCarrier, Ship battleship){
 		aliveShips.add(patrol);
 		aliveShips.add(destroyer);
@@ -28,6 +29,10 @@ public class Board {
 		aliveShips.add(aircraftCarrier);
 		aliveShips.add(battleship);
 		initBoard();
+	}
+
+	public void setBoard(String[][] board){
+		this.board = board;
 	}
 
 	//Recieves [A4, H] (Space A4, position horizonally)
@@ -82,6 +87,10 @@ public class Board {
 				board[i][j] = "_";
 			}
 		}
+	}
+
+	public boolean checkWin(){
+		return aliveShips.isEmpty();
 	}
 
 

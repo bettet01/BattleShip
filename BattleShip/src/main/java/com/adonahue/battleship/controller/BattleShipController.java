@@ -37,8 +37,29 @@ public class BattleShipController {
             gameOn = false;
         }
 
+    }
 
+    private void makeShot(Board board) {
+        int[] array = view.makeShot();
+        // TODO: check if already shot or if it's a hit or miss
 
+    }
+
+    private boolean checkWin(Board board) {
+        return !board.checkWin();
+    }
+
+    private Board displayTurn(boolean p1Turn, Board p1Board, Board p2Board) {
+        // TODO: these may need to return the other players board depending how we set
+        // it up
+        view.printTurn(p1Turn);
+        if (p1Turn) {
+            view.displayBoard(p1Board);
+            return p1Board;
+        } else {
+            view.displayBoard(p2Board);
+            return p2Board;
+        }
     }
 
     public void setUp(){

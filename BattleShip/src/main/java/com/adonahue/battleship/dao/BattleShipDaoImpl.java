@@ -1,8 +1,15 @@
 package com.adonahue.battleship.dao;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
 
 import com.adonahue.battleship.dto.Board;
 import com.adonahue.battleship.dto.Ship;
@@ -15,8 +22,16 @@ import com.adonahue.battleship.ui.UserIOImp;
  */
 public class BattleShipDaoImpl implements BattleShipDao {
 
-    private static final String GAME_FILE = "battleship.txt";
+    private static final String BOARD_FILE = "battleshipBoard.txt";
+    private static final String SHIP_FILE = "battleshipShip.txt";
     private UserIO io = new UserIOImp();
+    private Board p1Board;
+    private Board p2Board;
+
+    private void createNewBoard() {
+        p1Board = new Board();
+        p2Board = new Board();
+    }
 
     // public void getTurnBoard(boolean p1Turn) {
     //     if (p1Turn){
@@ -27,25 +42,61 @@ public class BattleShipDaoImpl implements BattleShipDao {
     // }
 
     @Override
-    public void saveGame(String[][] board) throws BattleShipDaoException {
+    public void saveBoard(String[][] board) throws BattleShipDaoException {
         PrintWriter out;
         try {
-            out = new PrintWriter(new FileWriter(GAME_FILE));
+            out = new PrintWriter(new FileWriter(BOARD_FILE));
         } catch (IOException e) {
             throw new BattleShipDaoException(
                     "Could not save DVD data.", e);
         }
-        String boardAsText;
-
-        boardAsText = marshallBoard(board);
+        String boardAsText = marshallBoard(board);
         out.println(boardAsText);
         out.flush();
         out.close();
     }
 
     @Override
-    public void loadGame() {
+    public void saveShip(List<Ship> shipList) throws BattleShipDaoException {
+        PrintWriter out;
+        try {
+            out = new PrintWriter(new FileWriter(SHIP_FILE));
+        } catch (IOException e) {
+            throw new BattleShipDaoException(
+                    "Could not save DVD data.", e);
+        }
+        String shipAsText;
+        for (Ship ship : shipList) {
+            shipAsText = marshallShip(ship);
+            out.println(shipAsText);
+            out.flush();
+        }
+        out.close();
+    }
 
+    @Override
+    public void loadBoard() {
+
+    }
+    
+    @Override
+    public void loadShip() throws BattleShipDaoException{
+        Scanner scanner;
+        String currentLine;
+        Ship currentShip;
+        try {
+            scanner = new Scanner(new BufferedReader(
+                    new FileReader(SHIP_FILE)));
+        } catch (FileNotFoundException e) {
+            throw new BattleShipDaoException(
+                    "-_- Could not load data into memory.", e);
+        }
+        while (scanner.hasNextLine()) {
+            currentLine = scanner.nextLine();
+            currentShip = unmarshallShip(currentLine);
+            board.setShip(currentShip);
+        }
+        scanner.close();
     }
 
     @Override
@@ -64,7 +115,11 @@ public class BattleShipDaoImpl implements BattleShipDao {
     public String marshallShip(Ship ship) {
         String shipAsText = ship.getName() + "::";
         shipAsText += ship.getLength() + "::";
-        shipAsText += ship.getPosition();
+
+        HashMap<Integer, ArrayList<Integer>> shipMap = ship.getPosition();
+        for (Integer i : shipMap.keySet()) {
+            shipAsText += i + ":" + shipMap.get(i) + "/";
+        }
         return shipAsText;
     }
 
@@ -83,7 +138,27 @@ public class BattleShipDaoImpl implements BattleShipDao {
 
     @Override
     public Ship unmarshallShip(String shipAsText) {
-       
+        String[] shipTokens = shipAsText.split("::");
+        String name = shipTokens[0];
+        int length = Integer.parseInt(shipTokens[1]);
+
+        Ship ship = new Ship(name, length);
+        HashMap<Integer,ArrayList<Integer>> positionMap = new HashMap<>();
+
+        String[] position = shipTokens[2].split("/");
+        for (int i = 0; i < position.length; i++) {
+            String[] positionSplit1 = position[i].split(":");
+            String[] positionSplit2 = positionSplit1[1].split(",");
+            int entry1 = Integer.parseInt(positionSplit2[0].substring(1));
+            int entry2 = Integer.parseInt(positionSplit2[1].substring(0,1));
+            ArrayList<Integer> myList = new ArrayList<>();
+            myList.add(entry1);
+            myList.add(entry2);
+            
+            positionMap.put(Integer.parseInt(positionSplit1[0]), myList);
+        }
+        ship.setPosition(positionMap);
+        return ship;
     }
 
 }
