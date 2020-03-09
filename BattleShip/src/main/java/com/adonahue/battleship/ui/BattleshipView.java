@@ -92,7 +92,6 @@ public class BattleshipView {
         }
     }
 
-<<<<<<< HEAD
 	public void displayAlreadyChosen() {
         io.print("That location has already been tried.");
 	}
@@ -103,8 +102,8 @@ public class BattleshipView {
 
 	public void displayMiss() {
         io.print("Miss :(");
-=======
+    }
+    
 	public void getNames() {
->>>>>>> 316961d3b8d4e86b7a511304ba360eab0dcebd3e
 	}
 }

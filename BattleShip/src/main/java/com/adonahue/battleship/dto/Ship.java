@@ -14,9 +14,6 @@ public class Ship {
     private String name;
     private int length;
     private HashMap<Integer, ArrayList<Integer>> position = new HashMap<>();
-	public void setPosition(HashMap<Integer,ArrayList<Integer>> position) {
-        this.position = position;
-    }
 
     // TESTING
     // public static void main(String args[]) {

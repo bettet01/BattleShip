@@ -31,47 +31,46 @@ public class BattleShipController {
         }
         
 
-
+        view.displayBeginBanner();
         while(gameOn){
-            view.displayBeginBanner();
-            view.displayBoard(dao.getBoard(p1Turn));
-            gameOn = false;
+            Board currentBoard = getPlayersBoard(p1Turn);
+            makeShot(currentBoard);
+            gameOn = checkWin(currentBoard);
+            p1Turn = !p1Turn;
         }
 
     }
 
+    private Board getPlayersBoard(boolean turn){
+        view.printTurn(p1Turn);
+        Board board = dao.getBoard(p1Turn);
+        view.displayBoard(board);
+        return board;
+    }
+
+
     private void makeShot(Board board) {
-        while(true){
+        boolean keepChoosing = true;
+        while(keepChoosing){
             int[] array = view.makeShot();
             if(board.checkBoard(array)){
                view.displayAlreadyChosen();
             } else {
                 if(board.checkHit(array)){
                     view.displayHit();
+                    keepChoosing = false;
                 } else {
                     view.displayMiss();
+                    keepChoosing = false;
                 }
             }
         }
-
-        // TODO: check if already shot or if it's a hit or miss
-
     }
 
     private boolean checkWin(Board board) {
         return !board.checkWin();
     }
 
-    private Board displayTurn(boolean p1Turn, Board p1Board, Board p2Board) {
-        view.printTurn(p1Turn);
-        if (p1Turn) {
-            view.displayBoard(p1Board);
-            return p1Board;
-        } else {
-            view.displayBoard(p2Board);
-            return p2Board;
-        }
-    }
 
     public void setUp(){
         try {
