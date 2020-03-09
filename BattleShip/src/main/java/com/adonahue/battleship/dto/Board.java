@@ -60,12 +60,14 @@ public class Board {
 	// requires a String[] with x and y position (A4), returns xy coords (0,4)
 	private ArrayList<Integer> convertLocation(String[] pos) {
 		ArrayList<Integer> xy = new ArrayList<>();
-		xy.add(pos[0].charAt(0) - 'A');
+		
 		if (pos[0].length() == 3) {
 			xy.add(9);
 		} else {
 			xy.add(pos[0].charAt(1) - '1');
 		}
+		xy.add(pos[0].charAt(0) - 'A');
+		
 		return xy;
 	}
 
@@ -98,7 +100,7 @@ public class Board {
 			HashMap<Integer, ArrayList<Integer>> positions = ship.getPosition();
 			for (ArrayList<Integer> shipPositions : positions.values()) {
 				if (shipPositions.get(0) == row && shipPositions.get(1) == column) {
-					board[row][column] = "X";
+					board[row][column] = Character.toString(ship.getName().charAt(0));
 					checkDeadShip(ship);
 					return true;
 				}
