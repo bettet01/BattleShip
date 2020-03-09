@@ -29,5 +29,14 @@ public class BattleshipView {
 
 
     public void displayBoard(Board board){
+            // TODO: add the column letters with correct spacing
+        for (int i = 0; i < board.getBoard().length; i++) {
+                System.out.println("");
+                // should print out row numbers
+                System.out.print(i+1 + ".");
+            for (int j = 0; j < board.getBoard().length; j++) {
+                System.out.print(board.getBoard()[i][j] + "|");
+            }
+        }
     }
 }
