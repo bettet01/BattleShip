@@ -81,4 +81,10 @@ public class Ship {
                 break;
         }
     }
+
+    public void setPosition(HashMap<Integer, ArrayList<Integer>> position) {
+        this.position = position;
+    }
+    
+    
 }
