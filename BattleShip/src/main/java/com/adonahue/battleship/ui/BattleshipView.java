@@ -74,26 +74,30 @@ public class BattleshipView {
         return position;
     }
 
-    public int[] makeShot() {
+    public String getShotChoice() {
         while (true) {
             io.print("");
             String choice = io.readString("Enter Shot Position (A1): ");
-            int letter = choice.charAt(0) - 'A';
-            try {
-                int number = Integer.parseInt(choice.substring(1)) - 1;
-                if ((letter >= 0 && letter < 10) && (number >= 0 && number < 10)) {
-                    return new int[]{letter, number};
-                } else {
-                    io.print("Invalid coordinates.");
-                }
-            } catch (Exception e) {
-                io.print("Invalid coordinates.");
-            }
-
+            return choice;
         }
     }
 
-	public void displayAlreadyChosen() {
+    public int[] makeShot(String choice) {
+        int letter = choice.charAt(0) - 'A';
+        try {
+            int number = Integer.parseInt(choice.substring(1)) - 1;
+            if ((letter >= 0 && letter < 10) && (number >= 0 && number < 10)) {
+                return new int[]{letter, number};
+            } else {
+                io.print("Invalid coordinates.");
+            }
+        } catch (Exception e) {
+            io.print("Invalid coordinates.");
+        }
+        return null;
+    }
+
+    public void displayAlreadyChosen() {
         io.print("That location has already been tried.");
     }
 
@@ -104,11 +108,15 @@ public class BattleshipView {
     public void displayMiss() {
         io.print("Miss :(");
     }
-    
-	public void getNames() {
-	}
 
-	public void printError(String s) {
+    public void getNames() {
+    }
+
+    public void printError(String s) {
         io.print(s);
-	}
+    }
+
+    public void saveGameInstructions() {
+        io.print("Type 'save' at any time if you would like to save");
+    }
 }

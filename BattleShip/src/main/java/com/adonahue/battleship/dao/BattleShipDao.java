@@ -36,7 +36,7 @@ public interface BattleShipDao {
 
     void loadGame() throws BattleShipDaoException;
 
-    void saveGame(List<Ship> p1ShipList, List<Ship> p2ShipList, String[][] board1, String[][] board2) throws BattleShipDaoException;
+    void saveGame() throws BattleShipDaoException;
 
     String marshallBoard(String[][] board);
 

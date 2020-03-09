@@ -49,6 +49,12 @@ public class Ship {
         return position;
     }
 
+    public void setPosition(HashMap<Integer, ArrayList<Integer>> position) {
+        this.position = position;
+    }
+    
+    
+
     //takes in ArrayList with xy coord and orientation, sets position based off input
     public void setNewPosition(ArrayList<Integer> position, String orientation) throws BadPlacementException{
         switch (orientation) {
