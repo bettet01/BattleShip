@@ -2,8 +2,7 @@ package com.adonahue.battleship.dto;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.adonahue.battleship.ui.*;
+import java.util.stream.Collectors;
 
 /**
  * Board
@@ -30,15 +29,15 @@ public class Board {
 	}
 
 	//Recieves [A4, H] (Space A4, position horizonally)
-	public void setShipPosition(String [] pos) {
+	public void setShipPosition(String [] pos, String name) {
 		ArrayList<Integer> xy = new ArrayList<>();
 		xy.add(pos[0].charAt(0) - 'A');
 		xy.add(pos[0].charAt(1) - '1');
-		aliveShips.stream().filter(s -> s.g)
-
+		List<Ship> singleShip = aliveShips.stream().filter(s -> s.getName().equals(name)).collect(Collectors.toList());
+		singleShip.get(0).setPosition(xy);
 	}
-	// for testing purposes
 
+	// for testing purposes
 	public void setShip(Ship ship){
 		aliveShips.add(ship);
 	}

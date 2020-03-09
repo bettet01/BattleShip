@@ -10,7 +10,7 @@ public class Ship {
     
     private String name;
     private int length;
-    private ArrayList<ArrayList<Integer>> position;
+    private ArrayList<Integer> position;
     
     public Ship (String name, int length){
         this.name = name;
@@ -33,11 +33,11 @@ public class Ship {
         this.length = length;
     }
 
-    public ArrayList<ArrayList<Integer>> getPosition() {
+    public ArrayList<Integer> getPosition() {
         return position;
     }
 
-    public void setPosition(ArrayList<ArrayList<Integer>> position) {
+    public void setPosition(ArrayList<Integer> position) {
         this.position = position;
     }
 }

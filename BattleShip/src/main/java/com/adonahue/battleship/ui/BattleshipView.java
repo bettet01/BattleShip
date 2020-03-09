@@ -1,6 +1,9 @@
 package com.adonahue.battleship.ui;
 
+import java.util.List;
+
 import com.adonahue.battleship.dto.Board;
+import com.adonahue.battleship.dto.Ship;
 
 /**
  * BattleshipView
@@ -48,5 +51,9 @@ public class BattleshipView {
                 System.out.print(board.getBoard()[i][j] + "|");
             }
         }
+    }
+
+    public String placeShip(List<Ship> list) {
+
     }
 }
