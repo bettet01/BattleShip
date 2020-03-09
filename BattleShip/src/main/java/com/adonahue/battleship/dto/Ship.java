@@ -49,6 +49,8 @@ public class Ship {
         return position;
     }
 
+    
+
     //takes in ArrayList with xy coord and orientation, sets position based off input
     public void setNewPosition(ArrayList<Integer> position, String orientation) throws BadPlacementException{
         switch (orientation) {
