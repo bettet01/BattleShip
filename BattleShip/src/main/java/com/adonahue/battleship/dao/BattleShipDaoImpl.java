@@ -1,12 +1,13 @@
 package com.adonahue.battleship.dao;
 
-import com.adonahue.battleship.dto.Ship;
-import com.adonahue.battleship.ui.UserIO;
-import com.adonahue.battleship.ui.UserIOImp;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+
+import com.adonahue.battleship.dto.Board;
+import com.adonahue.battleship.dto.Ship;
+import com.adonahue.battleship.ui.UserIO;
+import com.adonahue.battleship.ui.UserIOImp;
 
 /**
  *
@@ -16,6 +17,14 @@ public class BattleShipDaoImpl implements BattleShipDao {
 
     private static final String GAME_FILE = "battleship.txt";
     private UserIO io = new UserIOImp();
+
+    // public void getTurnBoard(boolean p1Turn) {
+    //     if (p1Turn){
+    //         return p2Board;
+    //     } else {
+    //         return p1Board;
+    //     }
+    // }
 
     @Override
     public void saveGame(String[][] board) throws BattleShipDaoException {
