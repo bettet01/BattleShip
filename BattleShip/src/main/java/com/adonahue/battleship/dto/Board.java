@@ -3,6 +3,8 @@ package com.adonahue.battleship.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.adonahue.battleship.ui.*;
+
 /**
  * Board
  */
@@ -11,15 +13,15 @@ public class Board {
 	private String[][] board = new String[10][10];
 
 	// for testing purposes
-	public static void main(String[] args) {
-		Board board = new Board();
-		for(int i = 0; i < 10; i++){
-			for(int j = 0; j < 10; j++){
-				
-			}
-		}
+
+	public void setShip(Ship ship){
+		aliveShips.add(ship);
 	}
 
+
+	public void showBoard(){
+
+	}
 
 	public List<Ship> getShips(){
 		return aliveShips;

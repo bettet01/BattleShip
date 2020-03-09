@@ -1,5 +1,7 @@
 package com.adonahue.battleship.ui;
 
+import com.adonahue.battleship.dto.Board;
+
 /**
  * BattleshipView
  */
@@ -23,5 +25,9 @@ public class BattleshipView {
             locArr[0] = location.charAt(0) - '0' - 1;
         }
         return null;
+    }
+
+
+    public void displayBoard(Board board){
     }
 }
