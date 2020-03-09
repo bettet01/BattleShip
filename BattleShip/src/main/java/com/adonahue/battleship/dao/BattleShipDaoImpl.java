@@ -249,8 +249,8 @@ public class BattleShipDaoImpl implements BattleShipDao {
             int entry1 = Integer.parseInt(positionSplit2[0].substring(1));
             int entry2 = Integer.parseInt(positionSplit2[1].replaceAll("]","").trim());
             ArrayList<Integer> myList = new ArrayList<>();
-            myList.add(entry1);
             myList.add(entry2);
+            myList.add(entry1);
 
             positionMap.put(Integer.parseInt(positionSplit1[0]), myList);
         }
