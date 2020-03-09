@@ -32,6 +32,7 @@ public class BattleshipView {
     }
 
     public void displayBeginBanner() {
+        io.print("--- Starting Game ---");
     }
 
     public String getName(String player) {
@@ -90,4 +91,7 @@ public class BattleshipView {
 
         }
     }
+
+	public void getNames() {
+	}
 }

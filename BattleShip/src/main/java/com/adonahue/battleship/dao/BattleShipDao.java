@@ -6,8 +6,10 @@
 package com.adonahue.battleship.dao;
 
 
-import com.adonahue.battleship.dto.Ship;
 import java.util.List;
+
+import com.adonahue.battleship.dto.Board;
+import com.adonahue.battleship.dto.Ship;
 
 /**
  *
@@ -32,5 +34,10 @@ public interface BattleShipDao {
     String marshallShip(Ship ship);
     String[][] unmarshallBoard(String boardAsText);
     Ship unmarshallShip(String shipAsText);
-	Object getP1Ships();
+
+    List<Ship> getP1Ships();
+    List<Ship> getP2Ships();
+    Board getBoard(boolean p1Turn);
+    
+	void setShipPosition(String[] placeShip, String name, boolean p1Turn) throws BadPlacementException;
 }

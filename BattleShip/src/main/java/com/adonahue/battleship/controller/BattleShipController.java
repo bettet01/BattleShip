@@ -22,19 +22,19 @@ public class BattleShipController {
     public void execute() {
         boolean gameOn = true;
         p1Turn = true;
-        boolean newGame = view.getGameChoice();
+        boolean newGame = true;
 
         if (newGame) {
             setUp();
         } else {
-            loadGame();
+            // loadGame();
         }
         
 
 
         while(gameOn){
             view.displayBeginBanner();
-            view.displayBoard(p1Board);
+            view.displayBoard(dao.getBoard(p1Turn));
             gameOn = false;
         }
 
@@ -51,8 +51,6 @@ public class BattleShipController {
     }
 
     private Board displayTurn(boolean p1Turn, Board p1Board, Board p2Board) {
-        // TODO: these may need to return the other players board depending how we set
-        // it up
         view.printTurn(p1Turn);
         if (p1Turn) {
             view.displayBoard(p1Board);
@@ -74,11 +72,12 @@ public class BattleShipController {
             }
             p1Turn = !p1Turn;
             view.printTurn(p1Turn);
-            for (Ship s : p2Board.getShips()) {
+            for (Ship s : dao.getP2Ships()) {
                 dao.setShipPosition(view.placeShip(s), s.getName(), p1Turn);
             }
         } catch (Exception e) {
             System.out.println("ruh roh");
+            System.out.println(e.getMessage());
         }
     }
 }

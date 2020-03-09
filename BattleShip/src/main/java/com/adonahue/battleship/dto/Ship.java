@@ -14,6 +14,9 @@ public class Ship {
     private String name;
     private int length;
     private HashMap<Integer, ArrayList<Integer>> position = new HashMap<>();
+	public void setPosition(HashMap<Integer,ArrayList<Integer>> position) {
+        this.position = position;
+    }
 
     // TESTING
     // public static void main(String args[]) {
@@ -50,7 +53,7 @@ public class Ship {
     }
 
     //takes in ArrayList with xy coord and orientation, sets position based off input
-    public void setPosition(ArrayList<Integer> position, String orientation) throws BadPlacementException{
+    public void setNewPosition(ArrayList<Integer> position, String orientation) throws BadPlacementException{
         switch (orientation) {
             case "h":
                 this.position.put(0, position);

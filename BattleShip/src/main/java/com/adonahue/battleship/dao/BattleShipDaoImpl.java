@@ -240,4 +240,32 @@ public class BattleShipDaoImpl implements BattleShipDao {
         return ship;
     }
 
+    @Override
+    public void setShipPosition(String[] placeShip, String name, boolean p1Turn) throws BadPlacementException {
+        if (p1Turn){
+            this.board1.setShipPosition(placeShip, name);
+        } else {
+            this.board2.setShipPosition(placeShip, name);
+        }
+
+    }
+
+    @Override
+    public List<Ship> getP1Ships() {
+        return board1.getShips();
+    }
+
+    @Override
+    public List<Ship> getP2Ships() {
+        return board2.getShips();
+    }
+
+    @Override
+    public Board getBoard(boolean p1Turn) {
+        if (p1Turn){
+            return board2;
+        }
+        return board1;
+    }
+
 }
