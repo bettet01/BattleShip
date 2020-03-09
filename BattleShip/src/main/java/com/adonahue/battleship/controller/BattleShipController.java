@@ -42,7 +42,7 @@ public class BattleShipController {
             gameOn = checkWin(currentBoard);
             p1Turn = !p1Turn;
         }
-        
+        view.displayBoard(dao.getBoard(p1Turn));
         view.displayVictor(p1Turn);
 
     }
@@ -67,12 +67,15 @@ public class BattleShipController {
                     if (board.checkBoard(array)) {
                         view.displayAlreadyChosen();
                     } else {
-                        if (board.checkHit(array)) {
-                            view.displayHit();
-                            keepChoosing = false;
-                        } else {
-                            view.displayMiss();
-                            keepChoosing = false;
+                        String check = board.checkHit(array)
+                            if(check.equals("X")){
+                                view.displayHit();
+                                keepChoosing = false;
+                            } else if(check.equals("O")){
+                                view.displayMiss();
+                                keepChoosing = false;
+                            } else {
+                                view.displaySunk(check);
                         }
                     }
                 }

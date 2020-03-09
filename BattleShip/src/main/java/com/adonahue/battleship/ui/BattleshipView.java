@@ -146,4 +146,8 @@ public class BattleshipView {
         displayBoard(showBoard);
         io.print("");
     }
+
+	public void displaySunk(String check) {
+        io.print("You Sunk My " + check + "!");
+	}
 }
