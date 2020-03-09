@@ -111,9 +111,27 @@ public class BattleShipDaoImpl implements BattleShipDao {
 
         scanner.close();
     }
+    
+    @Override
+    public void loadBoard2() throws BattleShipDaoException {
+        Scanner scanner;
+        String currentLine;
+        try {
+            scanner = new Scanner(new BufferedReader(
+                    new FileReader(BOARD2_FILE)));
+        } catch (FileNotFoundException e) {
+            throw new BattleShipDaoException(
+                    "-_- Could not load data into memory.", e);
+        }
+        currentLine = scanner.nextLine();
+        String[][] board = unmarshallBoard(currentLine);
+        board2.setBoard(board);
+
+        scanner.close();
+    }
 
     @Override
-    public void loadShip() throws BattleShipDaoException {
+    public void loadShip1() throws BattleShipDaoException {
         Scanner scanner;
         String currentLine;
         Ship currentShip;
@@ -128,6 +146,26 @@ public class BattleShipDaoImpl implements BattleShipDao {
             currentLine = scanner.nextLine();
             currentShip = unmarshallShip(currentLine);
             board1.setShip(currentShip);
+        }
+        scanner.close();
+    }
+    
+    @Override
+    public void loadShip2() throws BattleShipDaoException {
+        Scanner scanner;
+        String currentLine;
+        Ship currentShip;
+        try {
+            scanner = new Scanner(new BufferedReader(
+                    new FileReader(SHIP2_FILE)));
+        } catch (FileNotFoundException e) {
+            throw new BattleShipDaoException(
+                    "-_- Could not load data into memory.", e);
+        }
+        while (scanner.hasNextLine()) {
+            currentLine = scanner.nextLine();
+            currentShip = unmarshallShip(currentLine);
+            board2.setShip(currentShip);
         }
         scanner.close();
     }
