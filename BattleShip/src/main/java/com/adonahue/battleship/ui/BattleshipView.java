@@ -84,7 +84,7 @@ public class BattleshipView {
         try {
             int number = Integer.parseInt(choice.substring(1)) - 1;
             if ((letter >= 0 && letter < 10) && (number >= 0 && number < 10)) {
-                return new int[]{letter, number};
+                return new int[]{number, letter};
             } else {
                 io.print("Invalid coordinates.");
             }
@@ -111,7 +111,29 @@ public class BattleshipView {
 
     public void printError(String s) {
         io.print(s);
-    }
+	}
+
+	public boolean displaymainMenu() {
+        while (true) {
+            io.print("___ Welcome to BattleShip! ___");
+            io.print("1. New Game");
+            io.print("2. Load Game");
+            int x = io.readInt("Choice: ", 1, 2 );
+            if(x == 1){
+                return true;
+            } else {
+                return false;
+            }
+        }
+	}
+
+	public void displayVictor(boolean p1Turn) {
+        if(p1Turn){
+            io.print("Player 1 wins!! congrats :)");
+        } else {
+            io.print("Player 2 is victorious! slay on champ.");
+        }
+	}
 
     public void saveGameInstructions() {
         io.print("Type 'save' at any time if you would like to save");

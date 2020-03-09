@@ -26,6 +26,8 @@ public class BattleShipController {
         p1Turn = true;
         boolean newGame = true;
 
+        newGame = view.displaymainMenu();
+
         if (newGame) {
             setUp();
         } else {
@@ -40,6 +42,8 @@ public class BattleShipController {
             gameOn = checkWin(currentBoard);
             p1Turn = !p1Turn;
         }
+        
+        view.displayVictor(p1Turn);
 
     }
 
