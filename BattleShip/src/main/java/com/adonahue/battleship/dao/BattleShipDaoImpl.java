@@ -198,7 +198,9 @@ public class BattleShipDaoImpl implements BattleShipDao {
     public String marshallBoard(String[][] board) {
         String boardString = "";
         for (int i = 0; i < 10; i++) {
-            boardString += "\\";
+            if (i != 0) {
+                boardString += "//";
+            }
             for (int j = 0; j < 10; j++) {
                 boardString += board[i][j] + "::";
             }
@@ -221,11 +223,11 @@ public class BattleShipDaoImpl implements BattleShipDao {
     @Override
     public String[][] unmarshallBoard(String boardAsText) {
         String[][] board = new String[10][10];
-        String[] firstSplit = boardAsText.split("\\");
+        String[] firstSplit = boardAsText.split("//");
         for (int i = 0; i < 10; i++) {
             String[] secondSplit = firstSplit[i].split("::");
             for (int j = 0; j < 10; j++) {
-                secondSplit[j] = board[i][j];
+                board[i][j] = secondSplit[j];
             }
         }
         return board;
@@ -245,7 +247,7 @@ public class BattleShipDaoImpl implements BattleShipDao {
             String[] positionSplit1 = position[i].split(":");
             String[] positionSplit2 = positionSplit1[1].split(",");
             int entry1 = Integer.parseInt(positionSplit2[0].substring(1));
-            int entry2 = Integer.parseInt(positionSplit2[1].substring(0, 1));
+            int entry2 = Integer.parseInt(positionSplit2[1].replaceAll("]","").trim());
             ArrayList<Integer> myList = new ArrayList<>();
             myList.add(entry1);
             myList.add(entry2);
