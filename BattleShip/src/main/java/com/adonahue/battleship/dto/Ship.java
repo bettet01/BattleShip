@@ -64,9 +64,9 @@ public class Ship {
                 this.position.put(0, location);
                 for (int i = 1; i < this.length; i++) {
                     ArrayList<Integer> newLocation = new ArrayList<>();
-                    newLocation.add(location.get(0) + i);
+                    
+                    newLocation.add(location.get(0)+ i);
                     newLocation.add(location.get(1));
-
                     this.position.put(i, newLocation);
                 }
                 break;
@@ -78,6 +78,7 @@ public class Ship {
                 this.position.put(0, location);
                 for (int i = 1; i < this.length; i++) {
                     ArrayList<Integer> newLocation = new ArrayList<>();
+                    
                     newLocation.add(location.get(0));
                     newLocation.add(location.get(1) + i);
 
