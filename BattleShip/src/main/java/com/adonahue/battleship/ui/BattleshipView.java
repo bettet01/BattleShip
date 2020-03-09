@@ -2,6 +2,8 @@ package com.adonahue.battleship.ui;
 
 import com.adonahue.battleship.dto.Board;
 import com.adonahue.battleship.dto.Ship;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * BattleshipView
@@ -111,31 +113,36 @@ public class BattleshipView {
 
     public void printError(String s) {
         io.print(s);
-	}
+    }
 
-	public boolean displaymainMenu() {
+    public boolean displaymainMenu() {
         while (true) {
             io.print("___ Welcome to BattleShip! ___");
             io.print("1. New Game");
             io.print("2. Load Game");
-            int x = io.readInt("Choice: ", 1, 2 );
-            if(x == 1){
+            int x = io.readInt("Choice: ", 1, 2);
+            if (x == 1) {
                 return true;
             } else {
                 return false;
             }
         }
-	}
+    }
 
-	public void displayVictor(boolean p1Turn) {
-        if(p1Turn){
+    public void displayVictor(boolean p1Turn) {
+        if (p1Turn) {
             io.print("Player 1 wins!! congrats :)");
         } else {
             io.print("Player 2 is victorious! slay on champ.");
         }
-	}
+    }
 
     public void saveGameInstructions() {
         io.print("Type 'save' at any time if you would like to save");
+    }
+    
+    public void displayShipPositions(Board showBoard, Ship ship){
+        ship.getPosition().values().stream().forEach(location -> showBoard.setLocation(location));
+        displayBoard(showBoard);
     }
 }
