@@ -66,7 +66,7 @@ public class Ship {
                 }
                 break;
 
-            case "y":
+            case "v":
             this.position.put(0, position);
             for (int i = 1; i < this.length; i++) {
                 position.set(0, position.get(1) + 1);
@@ -84,7 +84,6 @@ public class Ship {
 
     public void setPosition(HashMap<Integer, ArrayList<Integer>> position) {
         this.position = position;
-    }
-    
+    }  
     
 }

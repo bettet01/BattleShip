@@ -2,6 +2,7 @@ package com.adonahue.battleship.ui;
 
 import java.util.List;
 
+import com.adonahue.battleship.dao.BadPlacementException;
 import com.adonahue.battleship.dto.Board;
 import com.adonahue.battleship.dto.Ship;
 
@@ -93,5 +94,9 @@ public class BattleshipView {
     }
 
 	public void getNames() {
+	}
+
+	public void printError(String s) {
+        io.print(s);
 	}
 }
