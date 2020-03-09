@@ -106,13 +106,16 @@ public class BattleShipController {
                 }
                 placed = false;
             }
-
+            
+            showBoard.initBoard();
+            
             p1Turn = !p1Turn;
             view.printTurn(p1Turn);
             for (Ship s : dao.getP1Ships()) {
                 while (!placed) {
                     try {
                         dao.setShipPosition(view.placeShip(s), s.getName(), p1Turn);
+                        view.displayShipPositions(showBoard,s);
                         placed = true;
                     } catch (BadPlacementException e) {
                         view.printError(e.getMessage());
