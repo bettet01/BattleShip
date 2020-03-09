@@ -146,4 +146,8 @@ public class BattleshipView {
         displayBoard(showBoard);
         io.print("");
     }
+
+    public void hitEnter(){
+        io.readString("Click enter to continue");
+    }
 }

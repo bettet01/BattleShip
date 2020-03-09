@@ -87,7 +87,7 @@ public class Ship {
                 break;
 
             default:
-                break;
+                throw new BadPlacementException("Your orientation was incorrectly entered");
         }
     }
 

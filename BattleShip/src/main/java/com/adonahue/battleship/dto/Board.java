@@ -58,7 +58,7 @@ public class Board {
 	}
 
 	// requires a String[] with x and y position (A4), returns xy coords (0,4)
-	private ArrayList<Integer> convertLocation(String[] pos) {
+	private ArrayList<Integer> convertLocation(String[] pos) throws BadPlacementException{
 		ArrayList<Integer> xy = new ArrayList<>();
 		
 		if (pos[0].length() == 3) {
@@ -68,6 +68,11 @@ public class Board {
 		}
 		xy.add(pos[0].charAt(0) - 'A');
 		
+		for (int x : xy) {
+			if (x > 9 || x < 0){
+				throw new BadPlacementException("The format entered was incorrect, enter in format (A1)");
+			}
+		}
 		return xy;
 	}
 
