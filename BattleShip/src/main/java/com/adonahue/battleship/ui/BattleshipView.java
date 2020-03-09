@@ -35,19 +35,23 @@ public class BattleshipView {
     }
 
     public String getName(String player) {
-            return io.readString("Please Enter Name for Player" + player + ": ");      
-        }
-
+        return io.readString("Please Enter Name for Player" + player + ": ");
     }
 
-    public void printTurn() {
-
+    public void printTurn(boolean p1Turn) {
+        if(p1Turn){
+            io.print("It's player 1's turn.");
+        } else{
+            io.print("It's player 2's turn.");
+        }
     }
 
     public void displayBoard(Board board) {
-        // TODO: add the column letters with correct spacing
+        io.print("   A B C D E F G H I J");
         for (int i = 0; i < board.getBoard().length; i++) {
-            System.out.println("");
+            if(i != 0){
+                System.out.println("");
+            } 
             // should print out row numbers
             if (i + 1 < 10) {
                 System.out.print(i + 1 + ". ");
@@ -62,9 +66,28 @@ public class BattleshipView {
     }
 
     public String[] placeShip(Ship ship) {
-    String[] position = new String[2];
-       position[0] = io.readString("Where would you like to place your " + ship.getName());
-       position[1] = io.readString(("Would you like your placement vertical or horizontal? (v/h)"));
-       return position;
+        String[] position = new String[2];
+        position[0] = io.readString("Where would you like to place your " + ship.getName());
+        position[1] = io.readString(("Would you like your placement vertical or horizontal? (v/h)"));
+        return position;
+    }
+
+    public int[] makeShot() {
+        while (true) {
+            io.print("");
+            String choice = io.readString("Enter Shot Position (A1): ");
+            int letter = choice.charAt(0) - 'A';
+            try {
+                int number = Integer.parseInt(choice.substring(1))-1;
+                if((letter >= 0 && letter < 10) && (number >= 0 && number < 10)){
+                    return new int[] {letter, number};
+                } else{
+                    io.print("Invalid coordinates.");
+                }
+            } catch (Exception e) {
+                io.print("Invalid coordinates.");
+            }
+
+        }
     }
 }
