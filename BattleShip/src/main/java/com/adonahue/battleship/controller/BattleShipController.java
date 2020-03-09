@@ -56,18 +56,20 @@ public class BattleShipController {
             String choice = view.getShotChoice();
             if (choice.equalsIgnoreCase("save")) {
                 dao.saveGame();
-            }
-            int[] array = view.makeShot(choice);
-            if (array != null) {
-                if (board.checkBoard(array)) {
-                    view.displayAlreadyChosen();
-                } else {
-                    if (board.checkHit(array)) {
-                        view.displayHit();
-                        keepChoosing = false;
+                System.exit(0);
+            } else {
+                int[] array = view.makeShot(choice);
+                if (array != null) {
+                    if (board.checkBoard(array)) {
+                        view.displayAlreadyChosen();
                     } else {
-                        view.displayMiss();
-                        keepChoosing = false;
+                        if (board.checkHit(array)) {
+                            view.displayHit();
+                            keepChoosing = false;
+                        } else {
+                            view.displayMiss();
+                            keepChoosing = false;
+                        }
                     }
                 }
             }
@@ -100,7 +102,7 @@ public class BattleShipController {
             p1Turn = !p1Turn;
             view.printTurn(p1Turn);
             for (Ship s : dao.getP1Ships()) {
-                while (!placed){
+                while (!placed) {
                     try {
                         dao.setShipPosition(view.placeShip(s), s.getName(), p1Turn);
                         placed = true;
