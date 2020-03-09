@@ -90,4 +90,16 @@ public class BattleshipView {
 
         }
     }
+
+	public void displayAlreadyChosen() {
+        io.print("That location has already been tried.");
+	}
+
+	public void displayHit() {
+        io.print("Hit! Let's go!");
+	}
+
+	public void displayMiss() {
+        io.print("Miss :(");
+	}
 }

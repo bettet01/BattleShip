@@ -1,7 +1,9 @@
 package com.adonahue.battleship.dto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -55,16 +57,48 @@ public class Board {
 		return board;
 	}
 
-	public String setBoardSquare(int[] coordinates){
-		int x = coordinates[0];
-		int y = coordinates[1];
-
-		for()
-	
+	public boolean checkBoard(int[] location){
+		int letter = location[0];
+		int number = location[1];
+		if(board[letter][number].equals("X") || board[letter][number].equals("O")){
+			return true;
+		} else {
+			return false;
+		}
 	}
 
+	public boolean checkHit(int[] location){
+		int letter = location[0];
+		int number = location[1];
+		for(Ship ship: aliveShips){
+			HashMap<Integer, ArrayList<Integer>> positions = ship.getPosition();
+			for(ArrayList<Integer> shipPositions: positions.values()){
+				if(shipPositions.get(0) == letter && shipPositions.get(1) == number){
+					board[letter][number] = "X";
+					checkDeadShip(ship);
+					return true;
+				}
+			}
+		}
+		board[letter][number] = "O";
+		return false;
+	}
 
-	public void initBoard(){
+	private void checkDeadShip(Ship ship) {
+		int count = 0;
+		Set<Integer> keys = ship.getPosition().keySet();
+		for(Integer key: keys){
+			ArrayList<Integer> coord = ship.getPosition().get(key);
+			if(board[coord.get(0)][coord.get(1)].equals("X")){
+				count++;
+			}
+		}
+		if(count == ship.getPosition().size()){
+			aliveShips.remove(ship);
+		}
+	}
+
+	public void initBoard() {
 		for(int i = 0; i < 10; i++){
 			for(int j = 0; j < 10; j++){
 				board[i][j] = "_";
