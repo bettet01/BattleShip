@@ -12,9 +12,16 @@ public class Board {
 	private List<Ship> aliveShips = new ArrayList<>();
 	private String[][] board = new String[10][10];
 
-
-	public Board(Ship pt, Ship destroyer, Ship submarine, Ship aircraftCarrier, Ship battleship){
-		aliveShips.add(pt);
+	public Board() {
+		aliveShips.add(new Ship("patrol",2));
+		aliveShips.add(new Ship("destroyer",3));
+		aliveShips.add(new Ship("submarine",3));
+		aliveShips.add(new Ship("aircraft carrier",5));
+		aliveShips.add(new Ship("battleship",4));
+		initBoard();
+	}
+	public Board(Ship patrol, Ship destroyer, Ship submarine, Ship aircraftCarrier, Ship battleship){
+		aliveShips.add(patrol);
 		aliveShips.add(destroyer);
 		aliveShips.add(submarine);
 		aliveShips.add(aircraftCarrier);
@@ -22,6 +29,14 @@ public class Board {
 		initBoard();
 	}
 
+	//Recieves [A4, H] (Space A4, position horizonally)
+	public void setShipPosition(String [] pos) {
+		ArrayList<Integer> xy = new ArrayList<>();
+		xy.add(pos[0].charAt(0) - 'A');
+		xy.add(pos[0].charAt(1) - '1');
+		aliveShips.stream().filter(s -> s.g)
+
+	}
 	// for testing purposes
 
 	public void setShip(Ship ship){
