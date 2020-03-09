@@ -111,7 +111,7 @@ public class BattleShipController {
             
             p1Turn = !p1Turn;
             view.printTurn(p1Turn);
-            for (Ship s : dao.getP1Ships()) {
+            for (Ship s : dao.getP2Ships()) {
                 while (!placed) {
                     try {
                         dao.setShipPosition(view.placeShip(s), s.getName(), p1Turn);
