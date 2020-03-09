@@ -1,5 +1,6 @@
 package com.adonahue.battleship.controller;
 
+import com.adonahue.battleship.dao.BattleShipDao;
 import com.adonahue.battleship.dto.Board;
 import com.adonahue.battleship.dto.Ship;
 import com.adonahue.battleship.ui.BattleshipView;
@@ -10,34 +11,31 @@ import com.adonahue.battleship.ui.BattleshipView;
 public class BattleShipController {
 
     BattleshipView view;
+    BattleShipDao dao;
+    boolean p1Turn;
 
-    public BattleShipController(BattleshipView view) {
+    public BattleShipController(BattleshipView view, BattleShipDao dao) {
         this.view = view;
+        this.dao = dao;
     }
 
     public void execute() {
         boolean gameOn = true;
-        Board p1Board = new Board();
-        Board p2Board = new Board();
-        boolean p1Turn = true;
+        p1Turn = true;
+        boolean newGame = view.getGameChoice();
 
-        // try {
-        // view.displayBeginBanner();
-        // String p1Name = view.getName();
-        // view.printTurn(); //Print the current player's turn
-        // for (Ship s : p1Board.getShips()) {
-        // p1Board.setShipPosition(view.placeShip(s), s.getName());
-        // }
-        // view.printTurn();
-        // for (Ship s : p2Board.getShips()) {
-        // p2Board.setShipPosition(view.placeShip(s), s.getName());
-        // }
+        if (newGame) {
+            setUp();
+        } else {
+            loadGame();
+        }
+        
 
-        while (gameOn) {
-            Board currentBoard = displayTurn(p1Turn, p1Board, p2Board);
-            makeShot(currentBoard);
-            gameOn = checkWin(currentBoard);
-            p1Turn = !p1Turn;
+
+        while(gameOn){
+            view.displayBeginBanner();
+            view.displayBoard(p1Board);
+            gameOn = false;
         }
 
     }
@@ -74,6 +72,25 @@ public class BattleShipController {
         } else {
             view.displayBoard(p2Board);
             return p2Board;
+        }
+    }
+
+    public void setUp(){
+        try {
+            view.displayBeginBanner();
+            view.getNames();
+            view.printTurn(p1Turn); //Print the current player's turn
+            dao.newBoard();
+            for (Ship s : dao.getP1Ships()) {
+                dao.setShipPosition(view.placeShip(s), s.getName(), p1Turn);
+            }
+            p1Turn = !p1Turn;
+            view.printTurn(p1Turn);
+            for (Ship s : p2Board.getShips()) {
+                dao.setShipPosition(view.placeShip(s), s.getName(), p1Turn);
+            }
+        } catch (Exception e) {
+            System.out.println("ruh roh");
         }
     }
 }

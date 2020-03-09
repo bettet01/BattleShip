@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.adonahue.battleship.dao.BadPlacementException;
+
 /**
  * Board
  */
@@ -14,12 +16,6 @@ public class Board {
 	private String[][] board = new String[10][10];
 
 	public Board() {
-		aliveShips.add(new Ship("patrol",2));
-		aliveShips.add(new Ship("destroyer",3));
-		aliveShips.add(new Ship("submarine",3));
-		aliveShips.add(new Ship("aircraft carrier",5));
-		aliveShips.add(new Ship("battleship",4));
-		initBoard();
 	}
 
 	public Board(Ship patrol, Ship destroyer, Ship submarine, Ship aircraftCarrier, Ship battleship){
@@ -31,20 +27,43 @@ public class Board {
 		initBoard();
 	}
 
+	public void newBoard() {
+		aliveShips.add(new Ship("patrol", 2));
+		aliveShips.add(new Ship("destroyer", 3));
+		aliveShips.add(new Ship("submarine", 3));
+		aliveShips.add(new Ship("aircraft carrier", 5));
+		aliveShips.add(new Ship("battleship", 4));
+		initBoard();
+	}
+
 	public void setBoard(String[][] board){
 		this.board = board;
 	}
 
 	//Recieves [A4, H] (Space A4, position horizonally)
-	public void setShipPosition(String[] pos, String name) {
+	public void setShipPosition(String[] pos, String name) throws BadPlacementException {
+		List<Ship> singleShip = aliveShips.stream().filter(s -> s.getName().equals(name)).collect(Collectors.toList());
+		singleShip.get(0).setPosition(convertLocation(pos), pos[1]);
+
+		for (Ship s: aliveShips) {
+			for (int x : singleShip.get(0).getPosition().keySet()){
+				if (s.getPosition().containsValue(singleShip.get(0).getPosition().get(x))){
+					throw new BadPlacementException("That ship overlaps another");
+				}
+			}
+		}
+
+		
+	}
+
+	//requires a String[] with x and y position (A4), returns xy coords (0,4)
+	private ArrayList<Integer> convertLocation(String[] pos) {
 		ArrayList<Integer> xy = new ArrayList<>();
 		xy.add(pos[0].charAt(0) - 'A');
 		xy.add(pos[0].charAt(1) - '1');
-		List<Ship> singleShip = aliveShips.stream().filter(s -> s.getName().equals(name)).collect(Collectors.toList());
-		singleShip.get(0).setPosition(xy, pos[1]);
+		return xy;
 	}
 
-	// for testing purposes
 	public void setShip(Ship ship){
 		aliveShips.add(ship);
 	}
@@ -83,6 +102,7 @@ public class Board {
 		board[letter][number] = "O";
 		return false;
 	}
+
 
 	private void checkDeadShip(Ship ship) {
 		int count = 0;
