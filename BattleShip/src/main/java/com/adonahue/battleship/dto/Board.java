@@ -133,5 +133,9 @@ public class Board {
 	public boolean checkWin() {
 		return aliveShips.isEmpty();
 	}
+        
+        public void setLocation(ArrayList<Integer> list){
+            board[list.get(0)][list.get(1)] = "X";
+        }
 
 }

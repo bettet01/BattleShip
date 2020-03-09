@@ -85,6 +85,8 @@ public class BattleShipController {
     }
 
     public void setUp() {
+        Board showBoard = new Board();
+        
         try {
             view.displayBeginBanner();
             view.getNames();
@@ -95,6 +97,7 @@ public class BattleShipController {
                 while (!placed) {
                     try {
                         dao.setShipPosition(view.placeShip(s), s.getName(), p1Turn);
+                        view.displayShipPositions(showBoard,s);
                         placed = true;
                     } catch (BadPlacementException e) {
                         view.printError(e.getMessage());
