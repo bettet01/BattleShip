@@ -38,6 +38,7 @@ public class BattleShipController {
 
 
         while(gameOn){
+            
             view.displayBeginBanner();
             view.displayBoard(p1Board);
             gameOn = false;

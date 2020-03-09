@@ -34,11 +34,14 @@ public class BattleshipView {
     public void displayBeginBanner() {
     }
 
-    public String getName() {
-        return null;
+    public String getName(String player) {
+            return io.readString("Please Enter Name for Player" + player + ": ");      
+        }
+
     }
 
     public void printTurn() {
+
     }
 
     public void displayBoard(Board board) {
