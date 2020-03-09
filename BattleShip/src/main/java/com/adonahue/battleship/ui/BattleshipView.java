@@ -61,7 +61,10 @@ public class BattleshipView {
         }
     }
 
-    public String placeShip(List<Ship> list) {
-
+    public String[] placeShip(Ship ship) {
+    String[] position = new String[2];
+       position[0] = io.readString("Where would you like to place your " + ship.getName());
+       position[1] = io.readString(("Would you like your placement vertical or horizontal? (v/h)"));
+       return position;
     }
 }

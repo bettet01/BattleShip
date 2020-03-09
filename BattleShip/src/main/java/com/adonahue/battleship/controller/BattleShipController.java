@@ -21,20 +21,17 @@ public class BattleShipController {
         Board p2Board = new Board();
         boolean p1Turn = true;
 
-        // try {
-        //     String p1Name = view.getName();
-        //     view.printTurn(); //Print the current player's turn
-        //     for (Ship s : p1Board.getShips()) {
-        //         p1Board.addShip(view.placeShip(p1Board.getShips()));
-        //     }
-        //     view.printTurn();
-        //     for (Ship s : p2Board.getShips()) {
-        //         p2Board.addShip(view.placeShip(p1Board.getShips()));
-        //     }
-
-        // } catch(Exception e){
-        //     System.err.println("Ooops " + e );
-        // }
+        try {
+            view.displayBeginBanner();
+            String p1Name = view.getName();
+            view.printTurn(); //Print the current player's turn
+            for (Ship s : p1Board.getShips()) {
+                p1Board.setShipPosition(view.placeShip(s), s.getName());
+            }
+            view.printTurn();
+            for (Ship s : p2Board.getShips()) {
+                p2Board.setShipPosition(view.placeShip(s), s.getName());
+            }
 
 
         while(gameOn){
