@@ -144,5 +144,6 @@ public class BattleshipView {
     public void displayShipPositions(Board showBoard, Ship ship){
         ship.getPosition().values().stream().forEach(location -> showBoard.setLocation(location));
         displayBoard(showBoard);
+        io.print("");
     }
 }

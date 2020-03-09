@@ -86,6 +86,7 @@ public class BattleShipController {
 
     public void setUp() {
         Board showBoard = new Board();
+        showBoard.initBoard();
         
         try {
             view.displayBeginBanner();
