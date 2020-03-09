@@ -1,6 +1,8 @@
 package com.adonahue.battleship.controller;
 
+import com.adonahue.battleship.dao.BadPlacementException;
 import com.adonahue.battleship.dao.BattleShipDao;
+import com.adonahue.battleship.dao.BattleShipDaoException;
 import com.adonahue.battleship.dto.Board;
 import com.adonahue.battleship.dto.Ship;
 import com.adonahue.battleship.ui.BattleshipView;
@@ -19,7 +21,7 @@ public class BattleShipController {
         this.dao = dao;
     }
 
-    public void execute() {
+    public void execute() throws BattleShipDaoException{
         boolean gameOn = true;
         p1Turn = true;
         boolean newGame = true;
@@ -27,7 +29,7 @@ public class BattleShipController {
         if (newGame) {
             setUp();
         } else {
-            // loadGame();
+            dao.loadGame();
         }
         
 
@@ -78,8 +80,15 @@ public class BattleShipController {
             view.getNames();
             view.printTurn(p1Turn); //Print the current player's turn
             dao.newBoard();
+            boolean placed = false;
             for (Ship s : dao.getP1Ships()) {
-                dao.setShipPosition(view.placeShip(s), s.getName(), p1Turn);
+                while(!placed)
+                try {
+                    dao.setShipPosition(view.placeShip(s), s.getName(), p1Turn);
+                    placed = true;
+                } catch (BadPlacementException e) {
+                    view.printError(e.getMessage());
+                }
             }
             p1Turn = !p1Turn;
             view.printTurn(p1Turn);
