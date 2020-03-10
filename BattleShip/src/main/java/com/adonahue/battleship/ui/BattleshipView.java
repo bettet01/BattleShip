@@ -33,15 +33,19 @@ public class BattleshipView {
         io.print("--- Starting Game ---");
     }
 
-    public String getName(String player) {
-        return io.readString("Please Enter Name for Player" + player + ": ");
+    public void getNames(boolean p1Turn) {
+        if (p1Turn) {
+            p1Name = io.readString("Enter a name for Player One");
+        } else {
+            p2Name = io.readString("Enter a name for Player Two");
+        }
     }
 
     public void printTurn(boolean p1Turn) {
         if (p1Turn) {
-            io.print("It's player 1's turn.");
+            io.print("It's " + p1Name + "'s turn.");
         } else {
-            io.print("It's player 2's turn.");
+            io.print("It's " + p2Name + "'s turn.");
         }
     }
 
@@ -151,6 +155,6 @@ public class BattleshipView {
     }
     
     public void hitEnter(){
-        io.readString("Click enter to continue");
+        io.readString("Click enter to continue to the next turn");
     }
 }

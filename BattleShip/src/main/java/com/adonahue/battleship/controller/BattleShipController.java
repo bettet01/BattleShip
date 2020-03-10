@@ -95,7 +95,7 @@ public class BattleShipController {
         
         try {
             view.displayBeginBanner();
-            view.getNames();
+            view.getNames(p1Turn);
             view.printTurn(p1Turn); // Print the current player's turn
             dao.newBoard();
             boolean placed = false;
@@ -115,6 +115,7 @@ public class BattleShipController {
             showBoard.initBoard();
             
             p1Turn = !p1Turn;
+            view.getNames(p1Turn);
             view.printTurn(p1Turn);
             for (Ship s : dao.getP2Ships()) {
                 while (!placed) {
