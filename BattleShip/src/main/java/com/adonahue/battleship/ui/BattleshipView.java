@@ -2,8 +2,6 @@ package com.adonahue.battleship.ui;
 
 import com.adonahue.battleship.dto.Board;
 import com.adonahue.battleship.dto.Ship;
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * BattleshipView
@@ -64,6 +62,7 @@ public class BattleshipView {
                 System.out.print(board.getBoard()[i][j] + "|");
             }
         }
+        io.print("");
     }
 
     public String[] placeShip(Ship ship) {

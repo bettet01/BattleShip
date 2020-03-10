@@ -13,8 +13,6 @@ import java.util.Scanner;
 
 import com.adonahue.battleship.dto.Board;
 import com.adonahue.battleship.dto.Ship;
-import com.adonahue.battleship.ui.UserIO;
-import com.adonahue.battleship.ui.UserIOImp;
 
 /**
  *
